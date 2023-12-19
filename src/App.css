@@ -1,0 +1,92 @@
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+button {
+    width: 50px;
+}
+span {
+    font-size: 20px;
+    font-weight: bold;
+}
+.App {
+    margin: 300px auto;
+    color: #FFF
+}
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+}
+/* ------------------------Main display------------------------*/
+.wrapper-set {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 250px;
+    min-height: 200px;
+    background-color: #030f48;
+    margin-left: 25px;
+    border-radius: 10px;
+}
+.wrapper-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 250px;
+    min-height: 200px;
+    background-color: #030f48;
+    margin-left: 25px;
+    border-radius: 10px;
+
+}
+.main-display {
+    font-size: 36px;
+    color: white;
+    margin-top: 5px;
+}
+.display {
+    color: red;
+}
+.buttons-set {
+    margin: 45px auto;
+    display: flex;
+    gap: 25px;
+}
+.buttons-display {
+    margin: 45px auto;
+    display: flex;
+    gap: 15px;
+}
+
+.inputs-wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    gap: 15px;
+}
+.inputs1 input {
+    width: 60px;
+    height: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 13px;
+}
+.inputs2 input {
+    width: 60px;
+    height: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 9px;
+}
+.error-message {
+    font-size: 30px;
+    color: red;
+    margin-top: 61px;
+}
+.error-input {
+    border: 1px solid red;
+    background-color: #ff8181;
+}
