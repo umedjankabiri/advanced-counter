@@ -1,6 +1,7 @@
 export type CounterProps = {
     startValue: number;
     maxValue: number;
+    counter: number
     error: string | null
-    onClickEnter?: (setCounter: (counter: number) => void) => void
+    setCounter?: (counter: number) => void
 }
