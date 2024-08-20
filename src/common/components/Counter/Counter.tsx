@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from 'react';
+import {FC} from 'react';
 import 'components/Counter/counterStyles.css'
 import {Button} from "components/Button/Button.tsx";
 import {Display} from "components/Display/Display.tsx";
@@ -8,21 +8,18 @@ export const Counter: FC<CounterProps> = (props) => {
     const zeroValue = 0
     //const minusOne = -1
 
-    const [counter, setCounter] = useState<number>(zeroValue)
+
     // const [message, setMessage] = useState<string | null>(null)
 
     const onClickPlusHandler = () => {
-        setCounter(prevCounter => prevCounter + 1)
+        props.setCounter && props.setCounter(props.counter)
     }
     const onClickMinusHandler = () => {
-        setCounter(prevCounter => prevCounter - 1)
+        props.setCounter && props.setCounter(props.counter)
     }
     const onClickResetHandler = () => {
-        setCounter(0)
+        props.setCounter && props.setCounter(props.counter)
     }
-    useEffect(()=> {
-        props.onClickEnter && props.onClickEnter(setCounter)
-    }, [props.onClickEnter])
 
     const disabledPlus = !!props.error
     const disabledMinus = !!props.error
@@ -33,8 +30,8 @@ export const Counter: FC<CounterProps> = (props) => {
             {/* ----------------------------------------- Counter layout -------------------------------------- */}
             { !!props.error
                 ? <span className={"error"}>{props.error}</span>
-                : <Display className={counter !== zeroValue && props.maxValue == counter ? "lastDigit" : "notError"}
-                     showCounter={counter}/>
+                : <Display className={props.counter !== zeroValue && props.maxValue == props.counter ? "lastDigit" : "notError"}
+                     showCounter={props.counter}/>
             }
                 <div className={"displayButtonsWrapper"}>
                     <Button className={"plus"}
