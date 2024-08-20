@@ -4,28 +4,32 @@ import {ChangeEvent, FC} from "react";
 import {SettingsProps} from "types/Settings/SettingsProps.ts";
 
 export const Settings: FC<SettingsProps> = (props) => {
+    const {startValue, maxValue,
+        error, onChangeStart,
+        onChangeMax, onClickEnter,
+        onClickClear} = props
     const zeroValue = 0;
     const minusOne = -1;
 
-    const onChangeMax = (event: ChangeEvent<HTMLInputElement>) => {
-        props.onChangeMax && props.onChangeMax(event)
+    const onChangeMaxHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        onChangeMax && onChangeMax(event)
     }
-    const onChangeStart = (event: ChangeEvent<HTMLInputElement>) => {
-        props.onChangeStart && props.onChangeStart(event)
+    const onChangeStartHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        onChangeStart && onChangeStart(event)
     }
     const onClickClearHandler = () => {
-        props.onClickClear && props.onClickClear()
+        onClickClear && onClickClear()
     }
     const onClickEnterHandler = () => {
-        props.onClickEnter && props.onClickEnter()
+        onClickEnter && onClickEnter()
     }
 
-    const disabledEnter = !!props.error
-        || props.maxValue == zeroValue
-        && props.startValue == zeroValue
-    const disabledClear = props.maxValue === zeroValue && props.startValue === zeroValue
-    const disabledMaxValue = props.maxValue === minusOne
-    const disabledMinValue = props.startValue === minusOne || props.startValue > props.maxValue
+    const disabledEnter = !!error
+        || maxValue == zeroValue
+        && startValue == zeroValue
+    const disabledClear = maxValue === zeroValue && startValue === zeroValue
+    const disabledMaxValue = maxValue === minusOne || maxValue < startValue
+    const disabledMinValue = startValue === minusOne || startValue > maxValue
 
     return (
         <div className={"settingsWrapper"}>
@@ -33,18 +37,18 @@ export const Settings: FC<SettingsProps> = (props) => {
             <div className={"displaySettings"}>
                 <div className={"maxValue"}>
                     <span className={""}>Enter max value: </span>
-                    <EnterValue className={!!props.error ? "enterMaxValueError" : "enterMaxValue"}
-                                value={props.maxValue}
-                                onChange={onChangeMax}
+                    <EnterValue className={!!error ? "enterMaxValueError" : "enterMaxValue"}
+                                value={maxValue}
+                                onChange={onChangeMaxHandler}
                                 min={minusOne}
                                 disabled={disabledMaxValue}
                     />
                 </div>
                 <div className={"startValue"}>
                     <span className={""}>Enter start value: </span>
-                    <EnterValue className={!!props.error ? "inputStartValueError" : "inputStartValue"}
-                                value={props.startValue}
-                                onChange={onChangeStart}
+                    <EnterValue className={!!error ? "inputStartValueError" : "inputStartValue"}
+                                value={startValue}
+                                onChange={onChangeStartHandler}
                                 min={minusOne}
                                 disabled={disabledMinValue}
                     />
