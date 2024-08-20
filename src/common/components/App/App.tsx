@@ -9,9 +9,8 @@ function App() {
 
     const [maxValue, setMaxValue] = useState<number>(zeroValue)
     const [startValue, setStartValue] = useState<number>(zeroValue)
+    const [counter, setCounter] = useState<number>(zeroValue)
     const [error, setError] = useState<string | null>(null)
-
-    let setCounterFunction: ((counter: number) => void) | null = null;
 
     const onChangeMaxValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const tempMaxValue = +event.currentTarget.value
@@ -34,10 +33,7 @@ function App() {
         setStartValue(tempStartValue)
     }
     const enterValues = () => {
-        setCounterFunction && setCounterFunction(startValue)
-    }
-    const enterStartValue = (setCounter: (counter: number) => void) => {
-        setCounterFunction = setCounter
+        setCounter(startValue)
     }
     const clearValues = () => {
         setError(null)
