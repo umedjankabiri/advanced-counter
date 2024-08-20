@@ -16,6 +16,10 @@ function App() {
         const tempMaxValue = +event.currentTarget.value
         if (tempMaxValue == minusOne)
             setError(`max value cannot be less then ${zeroValue}`)
+        else if (tempMaxValue == startValue)
+            setError(`max value cannot be equal to ${startValue}`)
+        else if (tempMaxValue < startValue)
+            setError(`max value cannot be less then ${startValue}`)
         else
             setError(null)
         setMaxValue(tempMaxValue)
@@ -39,6 +43,7 @@ function App() {
         setError(null)
         setStartValue(zeroValue)
         setMaxValue(zeroValue)
+        setCounter(zeroValue)
     }
 
     return (
