@@ -1,10 +1,16 @@
+*::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .mainWrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 50px;
-    margin: 300px auto;
+    margin: 250px auto;
 }
 /* Settings */
 .settingsWrapper {
@@ -19,6 +25,68 @@
     user-select: none;
     border-radius: 10px;
     background-color: #210a47;
+}
+
+.displaySettings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.maxValue, .startValue {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: lightgray;
+}
+
+.enterMaxValue, .inputStartValue {
+    width: 100px;
+    height: 30px;
+    padding: 5px 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+.enterMaxValueError, .inputStartValueError {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 100px;
+    height: 30px;
+    padding: 5px 15px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: red;
+    border: 2px solid red;
+    color: white;
+}
+
+.settingButtonsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+
+    width: 300px;
+    height: 100px;
+    border: 2px solid white;
+}
+
+.enterButton, .clearButton {
+    width: 80px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 /* Counter */
@@ -42,60 +110,75 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
 
-    font-size: 36px;
+.error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 300px;
+    height: 100px;
+    font-size: 18px;
+    color: red;
+    border: 2px solid red;
+}
+.message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 300px;
+    height: 100px;
+    font-size: 18px;
+    color: white;
+    border: 2px solid white;
+}
+.lastDigit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 72px;
+    color: red;
 
     width: 100px;
     height: 100px;
     border: 2px solid white;
+    margin: 0 auto;
 }
+.notError {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.lastDigit {
-    color: red;
-}
-
-.basicDigit {
+    font-size: 72px;
     color: white;
+
+    width: 100px;
+    height: 100px;
+    border: 2px solid white;
+    margin: 0 auto;
 }
 
-.error {
-    width: 230px;
-    height: 20px;
-    line-height: 20px;
-    font-size: 18px;
-    color: red;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 160px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.buttonsWrapper {
+.displayButtonsWrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
 
-    width: 250px;
+    width: 300px;
     height: 100px;
     border: 2px solid white;
 }
 
-.plus {
+.plus, .minus, .zero {
     cursor: pointer;
-    width: 50px;
+    width: 80px;
     height: 30px;
-}
-.minus {
-    cursor: pointer;
-    width: 50px;
-    height: 30px;
-}
-.zero {
-    cursor: pointer;
-    width: 50px;
-    height: 30px;
+    font-size: 16px;
+    font-weight: bold;
 }
