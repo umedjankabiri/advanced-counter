@@ -53,8 +53,9 @@ function App() {
             />
             <Counter maxValue={maxValue}
                      startValue={startValue}
+                     counter={counter}
                      error={error}
-                     onClickEnter={enterStartValue}
+                     setCounter={setCounter}
             />
         </div>
     )
