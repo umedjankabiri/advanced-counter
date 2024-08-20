@@ -4,8 +4,13 @@ import {Button} from "components/Button/Button.tsx";
 import {Display} from "components/Display/Display.tsx";
 import {CounterProps} from "types/Counter/CounterProps.ts";
 
-export const Counter: FC<CounterProps> = ({counter, startValue, maxValue, error, setCounter}) => {
+export const Counter: FC<CounterProps> = (props) => {
     const zeroValue = 0
+    const {
+        counter, startValue,
+        maxValue, error,
+        message, setCounter,
+        isActive} = props
 
     const onClickPlusHandler = () => {
         setCounter && setCounter(counter + 1)
@@ -17,33 +22,33 @@ export const Counter: FC<CounterProps> = ({counter, startValue, maxValue, error,
         setCounter && setCounter(startValue)
     }
 
-    const disabledPlus = !!error || counter == maxValue
-    const disabledMinus = !!error || counter == startValue
-    const disabledReset = !!error || counter == startValue
+    const disabledPlus = !!error || counter == maxValue || !isActive
+    const disabledMinus = !!error || counter == startValue || !isActive
+    const disabledReset = !!error || counter == startValue || !isActive
 
     return (
         <div className={"counterWrapper"}>
             {/* ----------------------------------------- Counter layout -------------------------------------- */}
-            { !!error
-                ? <span className={"error"}>{error}</span>
+            {!!error || !!message
+                ? <span className={!!error ? "error" : "message"}>{error || message}</span>
                 : <Display className={counter !== zeroValue && maxValue == counter ? "lastDigit" : "notError"}
-                     showCounter={counter}/>
+                           showCounter={counter}/>
             }
-                <div className={"displayButtonsWrapper"}>
-                    <Button className={"plus"}
-                            disabled={disabledPlus}
-                            onClick={onClickPlusHandler}
-                    >Plus</Button>
-                    <Button className={"minus"}
-                            disabled={disabledMinus}
-                            onClick={onClickMinusHandler}
-                    >Minus</Button>
-                    <Button className={"zero"}
-                            disabled={disabledReset}
-                            onClick={onClickResetHandler}
-                    >Reset</Button>
-                </div>
-            {/* ----------------------------------------------------------------------------------------------- */}
+            <div className={"displayButtonsWrapper"}>
+                <Button className={"plus"}
+                        disabled={disabledPlus}
+                        onClick={onClickPlusHandler}
+                >Plus</Button>
+                <Button className={"minus"}
+                        disabled={disabledMinus}
+                        onClick={onClickMinusHandler}
+                >Minus</Button>
+                <Button className={"zero"}
+                        disabled={disabledReset}
+                        onClick={onClickResetHandler}
+                >Reset</Button>
             </div>
+            {/* ----------------------------------------------------------------------------------------------- */}
+        </div>
     );
 };
