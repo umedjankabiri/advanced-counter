@@ -17,19 +17,17 @@ export const Settings: FC<SettingsProps> = (props) => {
     const onChangeStartHandler = (event: ChangeEvent<HTMLInputElement>) => {
         onChangeStart && onChangeStart(event)
     }
-    const onClickClearHandler = () => {
-        onClickClear && onClickClear()
-    }
     const onClickEnterHandler = () => {
         onClickEnter && onClickEnter()
     }
+    const onClickClearHandler = () => {
+        onClickClear && onClickClear()
+    }
 
-    const disabledEnter = !!error
-        || maxValue == zeroValue
-        && startValue == zeroValue
-    const disabledClear = maxValue === zeroValue && startValue === zeroValue
-    const disabledMaxValue = maxValue === minusOne || maxValue < startValue
-    const disabledMinValue = startValue === minusOne || startValue > maxValue
+    const disabledMaxValue = maxValue == minusOne || maxValue < startValue
+    const disabledStartValue = startValue == minusOne || startValue > maxValue
+    const disabledEnter = !!error || maxValue == zeroValue && startValue == zeroValue
+    const disabledClear = !error && maxValue == zeroValue && startValue == zeroValue
 
     return (
         <div className={"settingsWrapper"}>
@@ -50,7 +48,7 @@ export const Settings: FC<SettingsProps> = (props) => {
                                 value={startValue}
                                 onChange={onChangeStartHandler}
                                 min={minusOne}
-                                disabled={disabledMinValue}
+                                disabled={disabledStartValue}
                     />
                 </div>
             </div>
