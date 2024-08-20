@@ -2,6 +2,7 @@ import {EnterValue} from "components/EnterValue/EnterValue.tsx";
 import {Button} from "components/Button/Button.tsx";
 import {ChangeEvent, FC} from "react";
 import {SettingsProps} from "types/Settings/SettingsProps.ts";
+import "components/Settings/settingsStyles.css"
 
 export const Settings: FC<SettingsProps> = (props) => {
     const {startValue, maxValue,
