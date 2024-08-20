@@ -4,34 +4,30 @@ import {Button} from "components/Button/Button.tsx";
 import {Display} from "components/Display/Display.tsx";
 import {CounterProps} from "types/Counter/CounterProps.ts";
 
-export const Counter: FC<CounterProps> = (props) => {
+export const Counter: FC<CounterProps> = ({counter, startValue, maxValue, error, setCounter}) => {
     const zeroValue = 0
-    //const minusOne = -1
-
-
-    // const [message, setMessage] = useState<string | null>(null)
 
     const onClickPlusHandler = () => {
-        props.setCounter && props.setCounter(props.counter)
+        setCounter && setCounter(counter + 1)
     }
     const onClickMinusHandler = () => {
-        props.setCounter && props.setCounter(props.counter)
+        setCounter && setCounter(counter - 1)
     }
     const onClickResetHandler = () => {
-        props.setCounter && props.setCounter(props.counter)
+        setCounter && setCounter(startValue)
     }
 
-    const disabledPlus = !!props.error
-    const disabledMinus = !!props.error
-    const disabledReset = !!props.error
+    const disabledPlus = !!error || counter == maxValue
+    const disabledMinus = !!error || counter == startValue
+    const disabledReset = !!error || counter == startValue
 
     return (
         <div className={"counterWrapper"}>
             {/* ----------------------------------------- Counter layout -------------------------------------- */}
-            { !!props.error
-                ? <span className={"error"}>{props.error}</span>
-                : <Display className={props.counter !== zeroValue && props.maxValue == props.counter ? "lastDigit" : "notError"}
-                     showCounter={props.counter}/>
+            { !!error
+                ? <span className={"error"}>{error}</span>
+                : <Display className={counter !== zeroValue && maxValue == counter ? "lastDigit" : "notError"}
+                     showCounter={counter}/>
             }
                 <div className={"displayButtonsWrapper"}>
                     <Button className={"plus"}
