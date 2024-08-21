@@ -4,6 +4,7 @@ import path from 'node:path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/advanced-counter/',
   plugins: [react()],
   resolve:{
     alias: {
