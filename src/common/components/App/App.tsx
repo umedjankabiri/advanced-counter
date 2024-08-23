@@ -1,6 +1,6 @@
 import 'components/App/App.css'
 import {Counter} from "components/Counter/Counter.tsx";
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, useState} from "react";
 import {Settings} from "components/Settings/Settings.tsx";
 
 function App() {
@@ -20,11 +20,9 @@ function App() {
     const [message, setMessage] = useState<string | null>(null)
     const [isActiveButton, setIsActiveButton] = useState<boolean>(false)
 
-    useEffect(() => {
-        localStorage.setItem('maxValue', JSON.stringify(maxValue))
-        localStorage.setItem('startValue', JSON.stringify(startValue))
-        localStorage.setItem('counter', JSON.stringify(counter))
-    }, [maxValue, startValue, counter])
+    localStorage.setItem('maxValue', JSON.stringify(maxValue))
+    localStorage.setItem('startValue', JSON.stringify(startValue))
+    localStorage.setItem('counter', JSON.stringify(counter))
 
     const onChangeMaxValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const tempMaxValue = +event.currentTarget.value
