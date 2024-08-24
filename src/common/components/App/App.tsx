@@ -9,20 +9,23 @@ function App() {
     const asStringMaxValue = localStorage.getItem('maxValue')
     const asStringStartValue = localStorage.getItem('startValue')
     const asStringCounterValue = localStorage.getItem('counter')
+    const asStringButtonsValue = localStorage.getItem('buttons')
     const newMaxValue = asStringMaxValue ? JSON.parse(asStringMaxValue) : zeroValue;
     const newStartValue = asStringStartValue ? JSON.parse(asStringStartValue) : zeroValue;
     const newCounterValue = asStringCounterValue ? JSON.parse(asStringCounterValue) : zeroValue;
+    const ButtonsValue = asStringCounterValue ? JSON.parse(asStringButtonsValue as string) : true;
 
     const [maxValue, setMaxValue] = useState<number>(newMaxValue)
     const [startValue, setStartValue] = useState<number>(newStartValue)
     const [counter, setCounter] = useState<number>(newCounterValue)
     const [error, setError] = useState<string | null>(null)
     const [message, setMessage] = useState<string | null>(null)
-    const [isActiveButton, setIsActiveButton] = useState<boolean>(false)
+    const [isActiveButton, setIsActiveButton] = useState<boolean>(ButtonsValue)
 
     localStorage.setItem('maxValue', JSON.stringify(maxValue))
     localStorage.setItem('startValue', JSON.stringify(startValue))
     localStorage.setItem('counter', JSON.stringify(counter))
+    localStorage.setItem('buttons', JSON.stringify(ButtonsValue))
 
     const onChangeMaxValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const tempMaxValue = +event.currentTarget.value
